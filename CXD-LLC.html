@@ -1,0 +1,551 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Customer Experience Delivered (CXD)</title>
+  <meta name="description" content="Customer Experience Delivered (CXD) turns CX and contact center strategy into operational results.">
+  <style>
+    :root {
+      --ink: #17211f;
+      --muted: #5a6764;
+      --line: #d8dfdc;
+      --paper: #f7f8f6;
+      --panel: #ffffff;
+      --accent: #0f766e;
+      --accent-dark: #0b4f4a;
+      --gold: #c7973c;
+      --forest: #213c36;
+      --sky: #dcefeb;
+      --shadow: 0 18px 45px rgba(23, 33, 31, 0.11);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.55;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      border-bottom: 1px solid rgba(216, 223, 220, 0.86);
+      background: rgba(247, 248, 246, 0.93);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .mark {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      border-radius: 8px;
+      color: #fff;
+      background: linear-gradient(135deg, var(--forest), var(--accent));
+      letter-spacing: 0;
+      box-shadow: 0 10px 22px rgba(15, 118, 110, 0.22);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent-dark);
+    }
+
+    .hero {
+      min-height: min(760px, calc(100vh - 72px));
+      display: grid;
+      align-items: center;
+      padding: 72px 0 64px;
+      background:
+        linear-gradient(105deg, rgba(33, 60, 54, 0.94) 0%, rgba(33, 60, 54, 0.82) 46%, rgba(15, 118, 110, 0.56) 100%),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1400 900'%3E%3Crect width='1400' height='900' fill='%23dcefeb'/%3E%3Cg fill='none' stroke='%230f766e' stroke-opacity='.35' stroke-width='3'%3E%3Cpath d='M100 690 C240 580 330 620 470 500 S760 320 910 385 1120 555 1300 410'/%3E%3Cpath d='M90 300 C220 250 320 280 440 200 S710 120 850 190 1050 330 1270 230'/%3E%3Cpath d='M140 170 L350 310 L570 235 L790 390 L1050 280 L1290 455'/%3E%3Cpath d='M165 735 L385 580 L615 665 L855 515 L1085 640 L1275 525'/%3E%3C/g%3E%3Cg stroke='%23213c36' stroke-opacity='.22' stroke-width='2'%3E%3Cpath d='M180 750h1040M180 690h1040M180 630h1040M180 570h1040'/%3E%3Cpath d='M250 520v260M430 520v260M610 520v260M790 520v260M970 520v260M1150 520v260'/%3E%3C/g%3E%3C/svg%3E");
+      background-size: cover;
+      background-position: center;
+      color: #fff;
+    }
+
+    .hero-inner,
+    .section-inner {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .hero-content {
+      max-width: 830px;
+    }
+
+    .eyebrow {
+      margin: 0 0 18px;
+      color: #cfe9e5;
+      font-size: 0.86rem;
+      font-weight: 700;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 780px;
+      font-size: clamp(2.7rem, 7vw, 5.9rem);
+      line-height: 0.96;
+      letter-spacing: 0;
+    }
+
+    .hero p {
+      margin: 28px 0 0;
+      max-width: 680px;
+      color: #eef7f5;
+      font-size: clamp(1.1rem, 2vw, 1.35rem);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 16px;
+      margin-top: 34px;
+    }
+
+    .button {
+      display: inline-flex;
+      min-height: 46px;
+      align-items: center;
+      justify-content: center;
+      padding: 0 20px;
+      border: 1px solid transparent;
+      border-radius: 6px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .button.primary {
+      color: var(--forest);
+      background: #fff;
+    }
+
+    .button.secondary {
+      color: #fff;
+      border-color: rgba(255, 255, 255, 0.55);
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1px;
+      margin-top: -42px;
+      overflow: hidden;
+      border-radius: 8px;
+      background: var(--line);
+      box-shadow: var(--shadow);
+    }
+
+    .stat {
+      padding: 24px;
+      background: var(--panel);
+    }
+
+    .stat strong {
+      display: block;
+      color: var(--forest);
+      font-size: 1.05rem;
+    }
+
+    .stat span {
+      display: block;
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    section {
+      padding: 88px 0;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+      gap: 56px;
+      align-items: start;
+    }
+
+    .section-label {
+      margin: 0 0 12px;
+      color: var(--accent-dark);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      margin: 0;
+      color: var(--forest);
+      font-size: clamp(2rem, 4vw, 3.25rem);
+      line-height: 1.08;
+      letter-spacing: 0;
+    }
+
+    h3 {
+      margin: 0;
+      color: var(--forest);
+      font-size: 1.1rem;
+      letter-spacing: 0;
+    }
+
+    .lede {
+      margin: 0;
+      color: var(--ink);
+      font-size: 1.14rem;
+    }
+
+    .body-copy {
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 28px;
+    }
+
+    .card {
+      min-height: 162px;
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+    }
+
+    .card p {
+      margin: 10px 0 0;
+      color: var(--muted);
+    }
+
+    .band {
+      background: #fff;
+    }
+
+    .services-list {
+      display: grid;
+      gap: 12px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .services-list li {
+      display: flex;
+      align-items: center;
+      min-height: 58px;
+      padding: 16px 18px;
+      border-left: 4px solid var(--accent);
+      background: var(--sky);
+      color: var(--forest);
+      font-weight: 700;
+    }
+
+    .facts {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--line);
+    }
+
+    .fact {
+      min-height: 126px;
+      padding: 22px;
+      background: #fff;
+    }
+
+    .fact span {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--muted);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
+    .founder {
+      display: grid;
+      grid-template-columns: 180px minmax(0, 1fr);
+      gap: 30px;
+      align-items: center;
+      padding: 34px;
+      border-radius: 8px;
+      background: var(--forest);
+      color: #fff;
+      box-shadow: var(--shadow);
+    }
+
+    .founder-mark {
+      width: 160px;
+      height: 160px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+      font-size: 2.4rem;
+      font-weight: 700;
+    }
+
+    .founder h2,
+    .founder h3 {
+      color: #fff;
+    }
+
+    .founder p {
+      margin: 12px 0 0;
+      color: #dcefeb;
+    }
+
+    .footer {
+      padding: 34px 0;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      background: #fff;
+      font-size: 0.92rem;
+    }
+
+    .footer-inner {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 820px) {
+      .nav {
+        min-height: 66px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        min-height: auto;
+        padding: 72px 0 96px;
+      }
+
+      .stats,
+      .split,
+      .grid,
+      .facts,
+      .founder {
+        grid-template-columns: 1fr;
+      }
+
+      .stats {
+        margin-top: -28px;
+      }
+
+      section {
+        padding: 68px 0;
+      }
+
+      .founder-mark {
+        width: 128px;
+        height: 128px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="Primary navigation">
+      <a class="brand" href="#top" aria-label="Customer Experience Delivered home">
+        <span class="mark" aria-hidden="true">CXD</span>
+        <span>Customer Experience Delivered</span>
+      </a>
+      <div class="nav-links">
+        <a href="#overview">Overview</a>
+        <a href="#services">Services</a>
+        <a href="#founder">Founder</a>
+        <a href="#details">Details</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-inner">
+        <div class="hero-content">
+          <p class="eyebrow">Business consulting and services · Denver, CO</p>
+          <h1 id="hero-title">Customer Experience Delivered (CXD)</h1>
+          <p>Turning CX and contact center strategy into operational results.</p>
+          <div class="hero-actions">
+            <a class="button primary" href="#services">Explore Services</a>
+            <a class="button secondary" href="#details">Company Details</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-inner">
+      <div class="stats" aria-label="Company summary">
+        <div class="stat">
+          <strong>Business Consulting</strong>
+          <span>CX, contact center, and digital service transformation</span>
+        </div>
+        <div class="stat">
+          <strong>Denver, CO</strong>
+          <span>Primary office based in the United States</span>
+        </div>
+        <div class="stat">
+          <strong>Boutique Practice</strong>
+          <span>0-1 employees and founder-led delivery</span>
+        </div>
+      </div>
+    </div>
+
+    <section id="overview">
+      <div class="section-inner split">
+        <div>
+          <p class="section-label">Overview</p>
+          <h2>Strategy made operational.</h2>
+        </div>
+        <div>
+          <p class="lede">Customer Experience Delivered (CXD) helps leaders turn CX, contact center, and digital service strategy into operational results.</p>
+          <p class="body-copy">CXD aligns business goals, operating models, technology, governance, vendor performance, and change execution through practical roadmaps, outcome-based commercial models, and value-based contracts tied to measurable customer, employee, operational, and financial outcomes.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="services" class="band">
+      <div class="section-inner split">
+        <div>
+          <p class="section-label">Services</p>
+          <h2>Focused advisory for measurable transformation.</h2>
+          <p class="body-copy">Availability is based in Denver, CO. Pricing is available by contact.</p>
+        </div>
+        <div>
+          <ul class="services-list" aria-label="Services provided">
+            <li>Management Consulting</li>
+            <li>Business Consulting</li>
+            <li>IT Consulting</li>
+            <li>Change Management</li>
+          </ul>
+          <div class="grid" aria-label="Service themes">
+            <article class="card">
+              <h3>Roadmaps</h3>
+              <p>Practical plans that connect executive intent with operating realities, governance, and delivery sequencing.</p>
+            </article>
+            <article class="card">
+              <h3>Operating Models</h3>
+              <p>Alignment across business goals, contact center operations, technology, vendors, and change execution.</p>
+            </article>
+            <article class="card">
+              <h3>Commercial Models</h3>
+              <p>Outcome-based structures and value-based contracts tied to measurable operational and financial results.</p>
+            </article>
+            <article class="card">
+              <h3>Measured Outcomes</h3>
+              <p>Customer, employee, operational, and financial indicators that make transformation progress visible.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="founder">
+      <div class="section-inner">
+        <div class="founder">
+          <div class="founder-mark" aria-hidden="true">RR</div>
+          <div>
+            <p class="section-label">Founder</p>
+            <h2>Rob Rutledge</h2>
+            <p>CX and Contact Center Transformation Advisor | Strategy, Operating Model, Technology and Change Execution | Founder, CXD | Former Navixus and Eventus CEO | Ex-Accenture Managing Director</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="details" class="band">
+      <div class="section-inner">
+        <p class="section-label">Company Details</p>
+        <h2>Customer Experience Delivered at a glance.</h2>
+        <div class="facts" style="margin-top: 32px;">
+          <div class="fact">
+            <span>Industry</span>
+            <strong>Business Consulting and Services</strong>
+          </div>
+          <div class="fact">
+            <span>Company Size</span>
+            <strong>0-1 employees</strong>
+          </div>
+          <div class="fact">
+            <span>Headquarters</span>
+            <strong>Denver, CO</strong>
+          </div>
+          <div class="fact">
+            <span>Location</span>
+            <strong>Denver, CO, US</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <span>Customer Experience Delivered (CXD)</span>
+      <span>Turning CX and contact center strategy into operational results.</span>
+    </div>
+  </footer>
+</body>
+</html>
